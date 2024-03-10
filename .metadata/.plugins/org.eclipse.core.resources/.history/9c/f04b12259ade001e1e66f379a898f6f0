@@ -1,0 +1,58 @@
+package com.restaurant.recipes.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.restaurant.recipes.dto.RecipeRequest;
+import com.restaurant.recipes.enums.CodeError;
+import com.restaurant.recipes.exception.NotFoundException;
+import com.restaurant.recipes.model.Ingredient;
+import com.restaurant.recipes.model.Recipe;
+import com.restaurant.recipes.repository.IRecipeRepository;
+
+@Component
+public class RecipeMapper {
+	
+	@Autowired
+	private RestTemplate fetchAPI; // Same label used in bean configuration
+	
+	@Autowired
+	private IRecipeRepository repository;
+	
+	@Autowired
+	private MessageSource message;
+	
+	public Recipe toRecipeEntity(RecipeRequest r) {
+		Recipe recipe = new Recipe();
+		recipe.setPrice(r.getPrice());
+		recipe.setDescription(r.getDescription());
+		
+		List<Ingredient> ingredientList = new ArrayList<Ingredient>();
+		
+		List<String> ingredients = r.getIngredients();
+		for (String ingredient : ingredients) {
+			Ingredient persisted = fetchAPI.getForObject("http://localhost:9002/ingredients/find-by-name/"+ingredient, 
+					Ingredient.class);
+			if (persisted == null) {
+//				throw new NotFoundException(message.getMessage(
+//		    			CodeError.NOT_FOUND_INGREDIENT.toString(), null, Locale.US));
+				persisted = new Ingredient();
+				persisted.setName(ingredient);
+				fetchAPI.postForObject("http://localhost:9002/ingredients/create",persisted, 
+						Ingredient.class);
+			}
+			ingredientList.add(persisted);			
+		}
+		
+		recipe.setIngredients(ingredientList);
+		
+		repository.save(recipe);
+		return recipe;
+	}
+}

@@ -1,0 +1,5 @@
+package com.restaurant.dishes.repository;
+
+public interface IDishRepository {
+
+}

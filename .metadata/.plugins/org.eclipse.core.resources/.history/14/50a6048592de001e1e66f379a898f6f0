@@ -1,0 +1,10 @@
+package com.restaurant.recipes.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.restaurant.recipes.service.IDishService;
+
+@Service
+public class DishServiceImpl implements IDishService {
+
+}

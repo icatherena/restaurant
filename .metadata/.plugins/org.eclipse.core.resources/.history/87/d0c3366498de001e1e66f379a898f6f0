@@ -1,0 +1,11 @@
+package com.restaurant.recipes.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RecipeConfig {
+	@Bean("fetchAPI")
+	public RestTemplate signRestTemplate() {
+		return new RestTemplate();
+	}
+}

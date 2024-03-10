@@ -1,0 +1,52 @@
+package com.restaurant.recipes.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.restaurant.recipes.exception.NotFoundException;
+import com.restaurant.recipes.model.Recipe;
+import com.restaurant.recipes.repository.IRecipeRepository;
+import com.restaurant.recipes.service.IRecipeService;
+
+@Service
+public class RecipeServiceImpl implements IRecipeService {
+
+	@Autowired
+	private IRecipeRepository repository;
+	
+	@Override
+	public Recipe findRecipe(Long id) {
+		Recipe r = repository.findById(id).orElse(null);
+		if (r == null) {
+			throw new NotFoundException();
+		}
+		return r;
+	}
+
+	@Override
+	public List<Recipe> findAllRecipes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Recipe createRecipe(Recipe r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Recipe modifyRecipe(Long id, Recipe r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteRecipe(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

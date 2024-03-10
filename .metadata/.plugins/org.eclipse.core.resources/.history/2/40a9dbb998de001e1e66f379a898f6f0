@@ -1,0 +1,6 @@
+package com.restaurant.recipes.enums;
+
+public enum CodeError {
+	NOT_FOUND,
+	BAD_REQUEST
+}

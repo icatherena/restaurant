@@ -1,0 +1,9 @@
+package com.restaurant.dishes.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.restaurant.dishes.model.Dish;
+
+public interface IDishRepository extends JpaRepository<Dish, Long>{
+
+}

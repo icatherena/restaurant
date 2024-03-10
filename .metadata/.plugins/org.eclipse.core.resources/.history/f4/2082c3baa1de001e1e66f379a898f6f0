@@ -1,0 +1,45 @@
+package com.restaurant.recipes.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.restaurant.recipes.dto.RecipeRequest;
+import com.restaurant.recipes.model.Recipe;
+import com.restaurant.recipes.service.IRecipeService;
+
+import jakarta.annotation.PostConstruct;
+
+@RestController
+@RequestMapping("/recipes")
+public class RecipeController {
+	
+	@Autowired
+	private IRecipeService service;
+	
+	@GetMapping("/find-all-recipes")
+	public ResponseEntity<?> findAllRecipes() {
+		List<Recipe> r = service.findAllRecipes();
+		return ResponseEntity.ok().body(r);
+	}
+	
+	@GetMapping("/find-recipe/{id}")
+	public ResponseEntity<?> findRecipe(@PathVariable Long id) {
+		Recipe r = service.findRecipe(id);
+		return ResponseEntity.ok().body(r);
+	}
+	
+	@PostConstruct("/create")
+	public ResponseEntity<?> createRecipe(@RequestBody RecipeRequest request) {
+		Recipe r = service.createRecipe(request);
+		return ResponseEntity.ok().body(r);
+	}
+	
+	public
+}
