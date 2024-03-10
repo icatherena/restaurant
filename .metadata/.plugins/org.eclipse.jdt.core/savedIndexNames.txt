@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Users\beres\Downloads\restaurant\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-1648587073.index
-1504576555.index

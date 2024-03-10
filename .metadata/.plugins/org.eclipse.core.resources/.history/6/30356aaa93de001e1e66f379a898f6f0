@@ -1,5 +1,0 @@
-package com.restaurant.recipes.exception;
-
-public class ErrorDTO {
-
-}
