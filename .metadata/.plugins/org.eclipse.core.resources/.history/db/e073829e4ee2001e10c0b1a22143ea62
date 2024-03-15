@@ -1,0 +1,57 @@
+package com.restaurant.ingredients.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.restaurant.ingredients.dto.IngredientRequest;
+import com.restaurant.ingredients.model.Ingredient;
+import com.restaurant.ingredients.repository.IngredientRepository;
+import com.restaurant.ingredients.service.IIngredientService;
+
+@Service
+public class IngredientServiceImpl implements IIngredientService {
+	@Autowired
+	private IngredientRepository repository;
+	
+	@Override
+	public List<Ingredient> findAllIngredient() {
+		List<Ingredient> list = repository.findAll();
+		if (list.isEmpty()) {
+			
+		}
+		return list;
+	}
+
+	@Override
+	public Ingredient findIngredientById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ingredient findIngredientByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ingredient createIngredient(IngredientRequest r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ingredient modifyIngredient(Long id, IngredientRequest r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteIngredientById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

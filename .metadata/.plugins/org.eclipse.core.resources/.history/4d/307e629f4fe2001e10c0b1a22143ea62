@@ -1,0 +1,5 @@
+package com.restaurant.ingredients.mapper;
+
+public class IngredientMapper {
+
+}

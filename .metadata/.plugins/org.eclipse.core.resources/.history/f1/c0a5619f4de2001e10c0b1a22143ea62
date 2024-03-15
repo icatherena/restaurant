@@ -1,0 +1,10 @@
+package com.restaurant.ingredients.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.restaurant.ingredients.service.IIngredientService;
+
+@Service
+public class IngredientServiceImpl implements IIngredientService {
+
+}

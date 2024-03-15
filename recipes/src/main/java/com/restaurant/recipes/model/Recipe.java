@@ -2,13 +2,15 @@ package com.restaurant.recipes.model;
 
 import java.util.List;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+//import jakarta.persistence.JoinColumn;
+//import jakarta.persistence.JoinTable;
+//import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Recipe {
@@ -20,17 +22,21 @@ public class Recipe {
 	private Double price;
 	private String description;
 	
-	@ManyToMany
-	@JoinTable(name = "recipe_ingredient",
-			joinColumns = @JoinColumn(name = "recipe_id"),
-	        inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-	private List<Ingredient> ingredients;
+//	@ManyToMany
+//	@JoinTable(name = "recipe_ingredient",
+//			joinColumns = @JoinColumn(name = "recipe_id"),
+//	        inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+//	private List<Ingredient> ingredients;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> ingredients;
 	
 	public Recipe() {
 		super();
 	}
 
-	public Recipe(Long recipeNumber, String recipeName, Double price, String description, List<Ingredient> ingredients) {
+	public Recipe(Long recipeNumber, String recipeName, Double price, String description, 
+			List<String> ingredients) {
 		super();
 		this.recipeNumber = recipeNumber;
 		this.recipeName = recipeName;
@@ -51,7 +57,7 @@ public class Recipe {
 		return recipeName;
 	}
 
-	public void getRecipeName(String recipe) {
+	public void getRecipeName(String recipName) {
 		this.recipeName = recipeName;
 	}
 
@@ -71,11 +77,11 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public List<Ingredient> getIngredients() {
+	public List<String> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<Ingredient> ingredients) {
+	public void setIngredients(List<String> ingredients) {
 		this.ingredients = ingredients;
 	}
 
