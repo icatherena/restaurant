@@ -57,7 +57,7 @@ public class Recipe {
 		return recipeName;
 	}
 
-	public void getRecipeName(String recipName) {
+	public void setRecipeName(String recipeName) {
 		this.recipeName = recipeName;
 	}
 

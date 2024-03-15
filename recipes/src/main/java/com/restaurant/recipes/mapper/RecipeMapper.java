@@ -22,6 +22,7 @@ public class RecipeMapper {
 
 		if (alreadyPersisted == null) {
 			
+			recipe.setRecipeName(r.getRecipeName());
 			recipe.setPrice(r.getPrice());
 			recipe.setDescription(r.getDescription());
 
@@ -41,6 +42,9 @@ public class RecipeMapper {
 			
 		} else {
 			
+			String name = (r.getRecipeName() != null) ? r.getRecipeName() : alreadyPersisted.getRecipeName();
+			recipe.setRecipeName(name);
+			
 			Double price = (r.getPrice() != null) ? r.getPrice() : alreadyPersisted.getPrice();
 			recipe.setPrice(price);
 			
@@ -50,7 +54,7 @@ public class RecipeMapper {
 			List<String> ingredientList = new ArrayList<String>();
 			List<String> ingredientInRecipe = alreadyPersisted.getIngredients();
 
-			if (!r.getIngredients().isEmpty()) {
+			if (r.getIngredients() != null) {
 				for (String ingredient : r.getIngredients()) {
 					Ingredient ingredientPersisted = fetchAPI.getForObject(
 							"http://localhost:9002/ingredients/find-by-name/" + ingredient, Ingredient.class);
@@ -67,7 +71,10 @@ public class RecipeMapper {
 					}
 				}
 				recipe.setIngredients(ingredientInRecipe);
+			} else {
+				recipe.setDescription(alreadyPersisted.getDescription());
 			}
+			
 		}
 		return recipe;
 	}

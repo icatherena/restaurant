@@ -3,6 +3,7 @@ package com.restaurant.recipes.dto;
 import java.util.List;
 
 public class RecipeRequest {
+	private String recipeName;
 	private Double price;
 	private String description;
 	private List<String> ingredients;
@@ -10,12 +11,21 @@ public class RecipeRequest {
 	public RecipeRequest() {
 		super();
 	}
-	
-	public RecipeRequest(Double price, String description, List<String> ingredients) {
+
+	public RecipeRequest(String recipeName, Double price, String description, List<String> ingredients) {
 		super();
+		this.recipeName = recipeName;
 		this.price = price;
 		this.description = description;
 		this.ingredients = ingredients;
+	}
+
+	public String getRecipeName() {
+		return recipeName;
+	}
+
+	public void setRecipeName(String recipeName) {
+		this.recipeName = recipeName;
 	}
 
 	public Double getPrice() {
