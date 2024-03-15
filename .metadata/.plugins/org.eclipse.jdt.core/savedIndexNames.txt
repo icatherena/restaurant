@@ -83,7 +83,6 @@ INDEX VERSION 1.134+C:\Users\beres\Downloads\restaurant\.metadata\.plugins\org.e
 2633103380.index
 1147989976.index
 620245469.index
-1504576555.index
 1739143209.index
 2525420061.index
 2016998067.index

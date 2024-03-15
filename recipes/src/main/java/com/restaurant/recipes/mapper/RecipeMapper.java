@@ -25,7 +25,7 @@ public class RecipeMapper {
 			recipe.setPrice(r.getPrice());
 			recipe.setDescription(r.getDescription());
 
-			List<Ingredient> ingredientList = new ArrayList<Ingredient>();
+			List<String> ingredientList = new ArrayList<String>();
 
 			for (String ingredient : r.getIngredients()) {
 				Ingredient ingredientPersisted = fetchAPI
@@ -35,7 +35,7 @@ public class RecipeMapper {
 					ingredientPersisted.setName(ingredient);
 					fetchAPI.postForObject("http://localhost:9002/ingredients/create", ingredientPersisted, Ingredient.class);
 				}
-				ingredientList.add(ingredientPersisted);
+				ingredientList.add(ingredientPersisted.getName());
 			}
 			recipe.setIngredients(ingredientList);
 			
@@ -47,8 +47,8 @@ public class RecipeMapper {
 			String description = (r.getDescription() != null) ? r.getDescription() : alreadyPersisted.getDescription();
 			recipe.setDescription(description);
 
-			List<Ingredient> ingredientList = new ArrayList<Ingredient>();
-			List<Ingredient> ingredientInRecipe = alreadyPersisted.getIngredients();
+			List<String> ingredientList = new ArrayList<String>();
+			List<String> ingredientInRecipe = alreadyPersisted.getIngredients();
 
 			if (!r.getIngredients().isEmpty()) {
 				for (String ingredient : r.getIngredients()) {
@@ -59,9 +59,9 @@ public class RecipeMapper {
 						ingredientPersisted.setName(ingredient);
 						fetchAPI.postForObject("http://localhost:9002/ingredients/create", ingredientPersisted, Ingredient.class);
 					}
-					ingredientList.add(ingredientPersisted);
+					ingredientList.add(ingredientPersisted.getName());
 				}
-				for (Ingredient p : ingredientList) {
+				for (String p : ingredientList) {
 					if (!ingredientInRecipe.contains(p)) {
 						ingredientInRecipe.add(p);
 					}
